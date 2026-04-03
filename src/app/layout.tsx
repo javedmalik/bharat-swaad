@@ -72,8 +72,15 @@ export default function RootLayout({
     },
   };
 
- return (
+  return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, viewport-fit=cover"
+        />
+      </head>
+
       <body className={bricolage.variable}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
           <script

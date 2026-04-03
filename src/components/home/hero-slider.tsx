@@ -97,7 +97,7 @@ export default function HeroSlider() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 flex min-h-[100svh] items-center pt-24 pb-24 sm:pt-28 sm:pb-28 lg:pt-32 lg:pb-32">
+       <div className="relative z-10 flex min-h-[100svh] items-center pt-[calc(env(safe-area-inset-top)+5rem)] pb-24">
         <Container>
           <div className="flex justify-center lg:justify-end">
             <div className="w-full max-w-[680px] text-left lg:translate-x-12 xl:translate-x-20 2xl:translate-x-28">
