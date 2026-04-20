@@ -140,6 +140,9 @@ export default function Footer() {
           {/* Brand Section */}
           <div>
             <Logo />
+            <p className="mt-2 text-xs text-emerald-500/80 font-medium">
+              Premium Spice Brand of Zafranix Global Private Limited
+            </p>
             <p className="mt-4 text-sm text-gray-400 leading-relaxed">
               Premium Indian spices crafted with purity, tradition, and bold authentic flavour for every kitchen.
             </p>
@@ -182,20 +185,34 @@ export default function Footer() {
             </h3>
             <div className="mt-4 space-y-3">
               <div className="flex items-start gap-3">
-                <MapPin className="mt-0.5 h-4 w-4 text-emerald-500" />
+                <MapPin className="mt-0.5 h-4 w-4 text-emerald-500 flex-shrink-0" />
                 <span className="text-sm text-gray-400">{siteConfig.address}</span>
               </div>
-              <div className="flex items-center gap-3">
-                <Phone className="h-4 w-4 text-emerald-500" />
-                <a href={`tel:${siteConfig.phone}`} className="text-sm text-gray-400 hover:text-emerald-500 transition-colors">
-                  {siteConfig.phone}
-                </a>
+              <div className="space-y-2">
+                {siteConfig.phone.map((phoneNumber, index) => (
+                  <div key={index} className="flex items-center gap-3">
+                    <Phone className="h-4 w-4 text-emerald-500 flex-shrink-0" />
+                    <a 
+                      href={`tel:${phoneNumber.replace(/[^0-9+]/g, '')}`} 
+                      className="text-sm text-gray-400 hover:text-emerald-500 transition-colors"
+                    >
+                      {phoneNumber}
+                    </a>
+                  </div>
+                ))}
               </div>
-              <div className="flex items-center gap-3">
-                <Mail className="h-4 w-4 text-emerald-500" />
-                <a href={`mailto:${siteConfig.email}`} className="text-sm text-gray-400 hover:text-emerald-500 transition-colors break-all">
-                  {siteConfig.email}
-                </a>
+              <div className="space-y-1">
+                {siteConfig.email.map((emailAddress, index) => (
+                  <div key={index} className="flex items-center gap-3">
+                    <Mail className="h-4 w-4 text-emerald-500 flex-shrink-0" />
+                    <a 
+                      href={`mailto:${emailAddress}`} 
+                      className="text-sm text-gray-400 hover:text-emerald-500 transition-colors break-all"
+                    >
+                      {emailAddress}
+                    </a>
+                  </div>
+                ))}
               </div>
             </div>
           </div>

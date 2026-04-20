@@ -1,47 +1,3 @@
-// export const productsContent = {
-//   eyebrow: "Our Products",
-//   title: "Signature Spice Collection",
-//   description:
-//     "Discover our premium range of everyday essentials and specialty blends designed to bring authentic Indian flavour to every meal.",
-//   items: [
-//     {
-//       name: "Turmeric Powder",
-//       description: "Bright colour, earthy aroma, and natural purity.",
-//       image: "/images/products/p1.avif"
-//     },
-//     {
-//       name: "Red Chilli Powder",
-//       description: "Bold heat and vibrant taste for every recipe.",
-//       image: "/images/products/p2.avif"
-//     },
-//     {
-//       name: "Coriander Powder",
-//       description: "Fresh, citrusy, and perfectly balanced.",
-//       image: "/images/products/p3.avif"
-//     },
-//     {
-//       name: "Garam Masala",
-//       description: "A rich aromatic blend for classic Indian dishes.",
-//       image: "/images/products/p4.jpg"
-//     },
-//     {
-//       name: "Kitchen King Masala",
-//       description: "A versatile mix for everyday sabzi and curries.",
-//       image: "/images/products/p5.png"
-//     },
-//     {
-//       name: "Cumin Powder",
-//       description: "Warm, nutty flavour with deep aroma.",
-//       image: "/images/products/p6.avif"
-//     }
-//   ]
-// };
-
-
-// content/products.ts
-
-// content/products.ts
-
 import { type LucideIcon } from "lucide-react";
 
 export type ProductItem = {
@@ -120,7 +76,27 @@ export const productsContent: ProductsContent = {
       image: "/images/products/cinnamon.png",
       features: ["Ceylon", "Sweet Flavor"]
     },
-    
+    {
+      name: "Dry Garlic Powder",
+      description: "Intense garlic flavour with long shelf life. Perfect for marinades and spice blends.",
+      image: "/images/products/dry_garlic_powder.png",
+    },
+    {
+      name: "Dry Ginger Powder",
+      description: "Warm, zesty flavour with natural pungency. Ideal for teas, desserts, and spice blends.",
+      image: "/images/products/dry_ginger_powder.png",
+    },
+    {
+      name: "Dry Onion Powder",
+      description: "Rich onion flavour with long shelf life. Perfect for seasoning and spice blends.",
+      image: "/images/products/dry_onion_powder.png",
+    },  
+    {
+      name: "Yellow Chilli Powder",
+      description: "Mild heat with bright yellow colour. Ideal for dals, curries, and snacks.",
+      image: "/images/products/yellow-chilli.png",
+    },  
+
     // Masala Blends
     {
       name: "Garam Masala",
@@ -139,8 +115,8 @@ export const productsContent: ProductsContent = {
       name: "Meat Masala",
       description: "Special blend of robust spices for mouth-watering mutton and chicken curries.",
       image: "/images/products/meat-masala.png",
-      features: ["For Non-Veg", "Strong Flavor"],
-      isNew: true
+      features: ["For Non-Veg", "Strong Flavor", "Authentic"],
+      isBestseller: true
     },
     {
       name: "Chole Masala",
@@ -151,27 +127,54 @@ export const productsContent: ProductsContent = {
     {
       name: "Chicken Masala",
       description: "Perfectly balanced spices for tender, flavourful chicken preparations.",
-      image: "/images/products/kitchen-king.png",
+      image: "/images/products/chicken-masala-powder.jpg",
       features: ["Balanced Heat", "Restaurant Style"]
     },
     {
       name: "Paneer Masala",
       description: "Creamy and aromatic blend for rich, restaurant-style paneer dishes.",
-      image: "/images/products/kitchen-king.png",
+      image: "/images/products/paneer-masala.avif",
       features: ["Creamy Texture", "Mild Spice"],
       isNew: true
     },
     {
       name: "Tandoori Chicken Masala",
       description: "Special blend for authentic tandoori and tikka preparations.",
-      image: "/images/products/kitchen-king.png",
+      image: "/images/products/tandoori-chicken-masala.png",
       features: ["Red Color", "Smoky Flavor"]
     },
     {
-      name: "Sambar Powder",
+      name: "Sambar Masala",
       description: "South Indian style blend for delicious sambar and rasam.",
-      image: "/images/products/kitchen-king.png",
+      image: "/images/products/sambhar-masala.png",
       features: ["South Indian", "Authentic"],
+      isNew: true
+    },
+    {
+      name: "Chaat Masala",
+      description: "Tangy and spicy blend for fruits, snacks, and street food. Perfect for sprinkling on chaats.",
+      image: "/images/products/chaat-masala.png",
+      features: ["Tangy Flavor", "Street Food", "Versatile"],
+      isNew: true
+    },
+    {
+      name: "Rajma Masala",
+      description: "Authentic Punjabi spice blend for creamy, flavorful kidney bean curry.",
+      image: "/images/products/rajma-masala.jpg",
+      features: ["Punjabi Style", "Creamy Texture", "Authentic"]
+    },
+    {
+      name: "Dal Makhni Masala",
+      description: "Special blend for rich, buttery black lentil curry. Restaurant-style taste at home.",
+      image: "/images/products/dal-makhni-masala.avif",
+      features: ["Creamy", "Buttery Flavor", "Restaurant Style"],
+      isNew: true
+    },
+    {
+      name: "Soya Chaap Masala",
+      description: "Perfect spice blend for marinating and cooking soya chaap. Ideal for tandoori and gravies.",
+      image: "/images/products/soya-chaap-masala.jpg",
+      features: ["For Soya Chaap", "Tandoori Style", "Bold Flavor"],
       isNew: true
     },
     
@@ -201,20 +204,102 @@ export const productsContent: ProductsContent = {
       image: "/images/products/5.jpg",
       features: ["Liquorice Flavor", "For Masala"]
     },
+    {
+      name: "Whole Cumin",
+      description: "Earthy, warm seeds with distinctive aroma. Essential for tadka and spice blends.",
+      image: "/images/products/cumin-whole.png",
+      features: ["Premium Quality", "Strong Aroma", "For Tadka"]
+    },
+    {
+      name: "Black Pepper (Whole)",
+      description: "Premium Tellicherry peppercorns with sharp, pungent aroma. Freshly harvested.",
+      image: "/images/products/black-pepper-whole.png",
+      features: ["Tellicherry", "Sharp Aroma", "Fresh"],
+      isBestseller: true
+    },
+    {
+      name: "White Pepper",
+      description: "Milder, earthier flavour than black pepper. Perfect for light-coloured dishes.",
+      image: "/images/products/white-pepper.webp",
+      features: ["Mild Flavor", "For Light Dishes", "Premium Grade"]
+    },
+    {
+      name: "Javitri (Mace)",
+      description: "Delicate, aromatic spice with warm, nutty flavour. Derived from nutmeg outer covering.",
+      image: "/images/products/javitri.avif",
+      features: ["Aromatic", "Premium Quality", "For Rich Dishes"],
+      isNew: true
+    },
+    {
+      name: "Cinnamon (Whole)",
+      description: "Premium Ceylon cinnamon sticks with sweet, woody flavour.",
+      image: "/images/products/cinnamon-whole.png",
+      features: ["Ceylon", "Sweet Flavor", "Premium Grade"]
+    },
+    {
+      name: "Nutmeg (Jaiphal)",
+      description: "Warm, sweet, and nutty flavour. Grate fresh for desserts and rich curries.",
+      image: "/images/products/nutmeg.png",
+      features: ["Warm Flavor", "For Desserts", "Fresh"]
+    },
+    {
+      name: "Fennel Seeds (Saunf)",
+      description: "Sweet, liquorice-like seeds. Used as mouth freshener and in spice blends.",
+      image: "/images/products/fennel.jpg",
+      features: ["Sweet Flavor", "Mouth Freshener", "Digestive"]
+    },
+    {
+      name: "Fenugreek Seeds (Methi)",
+      description: "Slightly bitter, nutty seeds. Essential for pickles, dals, and spice blends.",
+      image: "/images/products/fenugreek.png",
+      features: ["Slightly Bitter", "For Pickles", "Aromatic"]
+    },
+    {
+      name: "Bay Leaves (Tej Patta)",
+      description: "Fragrant leaves with subtle cinnamon-like aroma. Essential for biryani and curries.",
+      image: "/images/products/bay-leaves.jpg",
+      features: ["Fragrant", "For Biryani", "Essential Spice"]
+    },
+    {
+      name: "Kasuri Methi (Dried Fenugreek)",
+      description: "Dried fenugreek leaves with unique, earthy aroma. Finish for butter chicken and dals.",
+      image: "/images/products/kasuri-methi.jpg",
+      features: ["Earthy Aroma", "For Butter Chicken", "Flavor Enhancer"],
+      isBestseller: true
+    },
+    {
+      name: "Ajwain (Carom Seeds)",
+      description: "Thyme-like, pungent seeds with digestive properties. Perfect for parathas and pakoras.",
+      image: "/images/products/ajwain.jpg",
+      features: ["Pungent Flavor", "Digestive", "For Indian Breads"]
+    },
+    {
+      name: "Kalonji (Nigella Seeds)",
+      description: "Black seeds with slightly bitter, peppery flavour. Essential for naan and pickles.",
+      image: "/images/products/kalonji.jpg",
+      features: ["Peppery Flavor", "For Naan", "For Pickles"]
+    },
     
     // Value Packs
     {
-      name: "Spice Gift Box",
-      description: "Complete collection of 8 essential spices in elegant wooden box.",
+      name: "Spice Gift Box (For Non-Veg)",
+      description: "Turmeric Powder, Coriander Powder, Red Chilli Powder, Kashmiri Red Chilli Powder, Meat Masala, Chicken Masala. Perfect for gifting.",
       image: "/images/products/w2.jpg",
-      features: ["Perfect Gift", "8 Spices"],
+      features: ["Perfect Gift", "6 Spices"],
+      isNew: true
+    },
+    {
+      name: "Spice Gift Box (For Veg)",
+      description: "Turmeric Powder, Coriander Powder, Red Chilli Powder, Kashmiri Red Chilli Powder, Paneer Masala, Rajma Masala. Perfect for gifting.",
+      image: "/images/products/w2.jpg",
+      features: ["Perfect Gift", "6 Spices"],
       isNew: true
     },
     {
       name: "Everyday Masala Pack",
-      description: "6 essential masalas for daily cooking. Great value combo pack.",
+      description: "Turmeric Powder, Coriander Powder, Red Chilli Powder, Kashmiri Red Chilli Powder, Garam Masala. All essential blends for everyday cooking.",
       image: "/images/products/w3.jpg",
-      features: ["Great Value", "6 Items"],
+      features: ["Great Value", "5 Items"],
       isBestseller: true
     }
   ]

@@ -1,6 +1,7 @@
 type SectionHeadingProps = {
   eyebrow: string;
   title: string;
+  subtitle?: string;
   description?: string;
   centered?: boolean;
   className?: string;
@@ -9,6 +10,7 @@ type SectionHeadingProps = {
 export default function SectionHeading({
   eyebrow,
   title,
+  subtitle,
   description,
   centered = true,
   className = "",
@@ -28,6 +30,11 @@ export default function SectionHeading({
       <h2 className={`text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl ${centered ? "" : "text-left"}`}>
         {title}
       </h2>
+      {subtitle && (
+        <p className={`text-lg font-medium text-green-700 text-muted-foreground ${centered ? "mx-auto" : ""}`}>
+          {subtitle}
+        </p>
+      )}
 
       {/* Optional Underline */}
       <div className={`mt-4 ${centered ? "flex justify-center" : ""}`}>

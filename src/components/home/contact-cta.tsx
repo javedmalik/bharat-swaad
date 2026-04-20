@@ -6,16 +6,17 @@ import { motion, Variants } from "framer-motion";
 import Container from "@/components/common/container";
 import SectionHeading from "@/components/common/section-heading";
 import { contactContent } from "@/content/contact";
-import { 
-  Mail, 
-  Phone, 
-  MapPin, 
-  Send, 
-  CheckCircle, 
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Send,
+  CheckCircle,
   AlertCircle,
   Clock,
-  MessageCircle
+  MessageCircle,
 } from "lucide-react";
+import SubjectDropdown from "./SubjectDropdown";
 
 interface FormData {
   name: string;
@@ -104,16 +105,16 @@ export default function ContactCta() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!validateForm()) {
       return;
     }
 
     setIsSubmitting(true);
-    
+
     // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
+    await new Promise((resolve) => setTimeout(resolve, 1500));
+
     setSubmitStatus({
       type: "success",
       message: "Thank you! We'll get back to you within 24 hours.",
@@ -126,14 +127,16 @@ export default function ContactCta() {
       message: "",
     });
     setIsSubmitting(false);
-    
+
     setTimeout(() => {
       setSubmitStatus({ type: null, message: "" });
     }, 5000);
   };
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >,
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -146,7 +149,7 @@ export default function ContactCta() {
     <section id="contact" className="section-space relative overflow-hidden">
       {/* Background Pattern */}
       {/* <div className="absolute inset-0 bg-grid opacity-30 dark:opacity-10" /> */}
-      
+
       {/* Decorative Blur Elements */}
       <div className="absolute top-0 -right-32 h-96 w-96 rounded-full bg-primary/5 blur-3xl" />
       <div className="absolute bottom-0 -left-32 h-96 w-96 rounded-full bg-secondary/5 blur-3xl" />
@@ -178,28 +181,50 @@ export default function ContactCta() {
                   </div>
 
                   {/* Contact Info Cards */}
+                  {/* Contact Info Cards */}
                   <div className="space-y-4">
                     <div className="flex items-start gap-3 rounded-xl border border-border bg-muted/30 p-4 transition-all hover:border-primary/30 hover:shadow-md">
                       <div className="rounded-lg bg-primary/10 p-2">
                         <Mail className="h-5 w-5 text-primary" />
                       </div>
                       <div>
-                        <div className="text-xs font-semibold uppercase text-muted-foreground">Email Us</div>
-                        <a href={`mailto:${contactContent.email}`} className="text-foreground hover:text-primary transition-colors">
-                          {contactContent.email}
-                        </a>
+                        <div className="text-xs font-semibold uppercase text-muted-foreground">
+                          Email Us
+                        </div>
+                        <div className="space-y-1">
+                          {contactContent.email.map((email, index) => (
+                            <a
+                              key={index}
+                              href={`mailto:${email}`}
+                              className="block text-foreground hover:text-primary transition-colors"
+                            >
+                              {email}
+                            </a>
+                          ))}
+                        </div>
                       </div>
                     </div>
 
+                    {/* Rest of the contact cards remain the same */}
                     <div className="flex items-start gap-3 rounded-xl border border-border bg-muted/30 p-4 transition-all hover:border-primary/30 hover:shadow-md">
                       <div className="rounded-lg bg-primary/10 p-2">
                         <Phone className="h-5 w-5 text-primary" />
                       </div>
                       <div>
-                        <div className="text-xs font-semibold uppercase text-muted-foreground">Call Us</div>
-                        <a href={`tel:${contactContent.phone}`} className="text-foreground hover:text-primary transition-colors">
-                          {contactContent.phone}
-                        </a>
+                        <div className="text-xs font-semibold uppercase text-muted-foreground">
+                          Call Us
+                        </div>
+                        <div className="flex flex-col gap-1 sm:flex-row sm:gap-3">
+                          {contactContent.phone.map((phoneNumber, index) => (
+                            <a
+                              key={index}
+                              href={`tel:${phoneNumber.replace(/[^0-9+]/g, "")}`}
+                              className="text-foreground hover:text-primary transition-colors text-sm"
+                            >
+                              {phoneNumber}
+                            </a>
+                          ))}
+                        </div>
                       </div>
                     </div>
 
@@ -208,8 +233,12 @@ export default function ContactCta() {
                         <MapPin className="h-5 w-5 text-primary" />
                       </div>
                       <div>
-                        <div className="text-xs font-semibold uppercase text-muted-foreground">Visit Us</div>
-                        <div className="text-foreground">{contactContent.address}</div>
+                        <div className="text-xs font-semibold uppercase text-muted-foreground">
+                          Visit Us
+                        </div>
+                        <div className="text-foreground">
+                          {contactContent.address}
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -218,13 +247,19 @@ export default function ContactCta() {
                   <div className="rounded-xl border border-border bg-muted/30 p-4">
                     <div className="flex items-center gap-2">
                       <Clock className="h-5 w-5 text-primary" />
-                      <span className="font-semibold text-foreground">Business Hours</span>
+                      <span className="font-semibold text-foreground">
+                        Business Hours
+                      </span>
                     </div>
                     <div className="mt-3 grid grid-cols-2 gap-2 text-sm">
-                      <span className="text-muted-foreground">Monday - Friday:</span>
+                      <span className="text-muted-foreground">
+                        Monday - Friday:
+                      </span>
                       <span className="text-foreground">9:00 AM - 7:00 PM</span>
                       <span className="text-muted-foreground">Saturday:</span>
-                      <span className="text-foreground">10:00 AM - 5:00 PM</span>
+                      <span className="text-foreground">
+                        10:00 AM - 5:00 PM
+                      </span>
                       <span className="text-muted-foreground">Sunday:</span>
                       <span className="text-foreground">Closed</span>
                     </div>
@@ -233,9 +268,11 @@ export default function ContactCta() {
 
                 {/* Right Side - Contact Form */}
                 <motion.div variants={itemVariants}>
-                  <div className="rounded-xl border border-border bg-muted/30 p-6">
-                    <h3 className="mb-4 text-xl font-bold text-foreground">Send us a Message</h3>
-                    
+                  <div className="rounded-xl border border-border bg-muted/30 p-6 lg:mt-40  transition-all hover:border-primary/30 hover:shadow-md">
+                    <h3 className="mb-4 text-xl font-bold text-foreground">
+                      Send us a Message
+                    </h3>
+
                     {submitStatus.type === "success" && (
                       <div className="mb-4 flex items-center gap-2 rounded-lg border border-emerald-200 bg-emerald-50 p-3 text-emerald-700 dark:border-emerald-800 dark:bg-emerald-950/30 dark:text-emerald-400">
                         <CheckCircle className="h-5 w-5" />
@@ -252,95 +289,100 @@ export default function ContactCta() {
 
                     <form onSubmit={handleSubmit} className="space-y-4">
                       <div>
-                        <label className="mb-1.5 block text-sm font-medium text-foreground">Full Name *</label>
+                        <label className="mb-1.5 block text-sm font-medium text-foreground">
+                          Full Name *
+                        </label>
                         <input
                           type="text"
                           name="name"
                           value={formData.name}
                           onChange={handleChange}
                           className={`w-full rounded-lg border bg-card px-4 py-2.5 text-foreground transition-all focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 ${
-                            errors.name ? "border-red-400 bg-red-50 dark:bg-red-950/20" : "border-border"
+                            errors.name
+                              ? "border-red-400 bg-red-50 dark:bg-red-950/20"
+                              : "border-border"
                           }`}
                           placeholder="Enter your full name"
                         />
                         {errors.name && (
-                          <p className="mt-1 text-xs text-red-500">{errors.name}</p>
+                          <p className="mt-1 text-xs text-red-500">
+                            {errors.name}
+                          </p>
                         )}
                       </div>
 
                       <div className="grid gap-4 sm:grid-cols-2">
                         <div>
-                          <label className="mb-1.5 block text-sm font-medium text-foreground">Email *</label>
+                          <label className="mb-1.5 block text-sm font-medium text-foreground">
+                            Email *
+                          </label>
                           <input
                             type="email"
                             name="email"
                             value={formData.email}
                             onChange={handleChange}
                             className={`w-full rounded-lg border bg-card px-4 py-2.5 text-foreground transition-all focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 ${
-                              errors.email ? "border-red-400 bg-red-50 dark:bg-red-950/20" : "border-border"
+                              errors.email
+                                ? "border-red-400 bg-red-50 dark:bg-red-950/20"
+                                : "border-border"
                             }`}
                             placeholder="your@email.com"
                           />
                           {errors.email && (
-                            <p className="mt-1 text-xs text-red-500">{errors.email}</p>
+                            <p className="mt-1 text-xs text-red-500">
+                              {errors.email}
+                            </p>
                           )}
                         </div>
 
                         <div>
-                          <label className="mb-1.5 block text-sm font-medium text-foreground">Phone *</label>
+                          <label className="mb-1.5 block text-sm font-medium text-foreground">
+                            Phone *
+                          </label>
                           <input
                             type="tel"
                             name="phone"
                             value={formData.phone}
                             onChange={handleChange}
                             className={`w-full rounded-lg border bg-card px-4 py-2.5 text-foreground transition-all focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 ${
-                              errors.phone ? "border-red-400 bg-red-50 dark:bg-red-950/20" : "border-border"
+                              errors.phone
+                                ? "border-red-400 bg-red-50 dark:bg-red-950/20"
+                                : "border-border"
                             }`}
                             placeholder="10-digit mobile number"
                           />
                           {errors.phone && (
-                            <p className="mt-1 text-xs text-red-500">{errors.phone}</p>
+                            <p className="mt-1 text-xs text-red-500">
+                              {errors.phone}
+                            </p>
                           )}
                         </div>
                       </div>
 
                       <div>
-                        <label className="mb-1.5 block text-sm font-medium text-foreground">Subject *</label>
-                        <select
-                          name="subject"
-                          value={formData.subject}
-                          onChange={handleChange}
-                          className={`w-full rounded-lg border bg-card px-4 py-2.5 text-foreground transition-all focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 ${
-                            errors.subject ? "border-red-400 bg-red-50 dark:bg-red-950/20" : "border-border"
-                          }`}
-                        >
-                          <option value="">Select a subject</option>
-                          <option value="Product Enquiry">Product Enquiry</option>
-                          <option value="Bulk Order">Bulk Order</option>
-                          <option value="Dealership">Dealership Opportunity</option>
-                          <option value="Business Partnership">Business Partnership</option>
-                          <option value="Feedback">Feedback</option>
-                          <option value="Other">Other</option>
-                        </select>
-                        {errors.subject && (
-                          <p className="mt-1 text-xs text-red-500">{errors.subject}</p>
-                        )}
+                        <SubjectDropdown />
                       </div>
 
                       <div>
-                        <label className="mb-1.5 block text-sm font-medium text-foreground">Message *</label>
+                        <label className="mb-1.5 block text-sm font-medium text-foreground">
+                          Message *
+                        </label>
                         <textarea
                           name="message"
                           value={formData.message}
                           onChange={handleChange}
                           rows={4}
                           className={`w-full rounded-lg border bg-card px-4 py-2.5 text-foreground transition-all focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 ${
-                            errors.message ? "border-red-400 bg-red-50 dark:bg-red-950/20" : "border-border"
+                            errors.message
+                              ? "border-red-400 bg-red-50 dark:bg-red-950/20"
+                              : "border-border"
                           }`}
                           placeholder="Tell us how we can help you..."
                         />
                         {errors.message && (
-                          <p className="mt-1 text-xs text-red-500">{errors.message}</p>
+                          <p className="mt-1 text-xs text-red-500">
+                            {errors.message}
+                          </p>
                         )}
                       </div>
 

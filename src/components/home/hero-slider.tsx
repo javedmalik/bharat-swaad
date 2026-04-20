@@ -111,7 +111,7 @@ export default function HeroSlider() {
                 <div className="inline-flex max-w-full items-center gap-2 rounded-full border border-white/30 bg-white/10 px-3 py-2 backdrop-blur-md sm:px-4">
                   <Sparkles className="h-3.5 w-3.5 shrink-0 text-yellow-400" />
                   <span className="text-[10px] font-semibold uppercase tracking-[0.16em] text-yellow-300 sm:text-xs sm:tracking-[0.2em]">
-                    Premium Indian Spice Brand
+                    Premium Spice Brand of Zafranix Global Pvt. Ltd.
                   </span>
                   <Star className="h-3 w-3 shrink-0 text-yellow-400" />
                 </div>

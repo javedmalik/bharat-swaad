@@ -30,6 +30,7 @@ export default function AboutSection() {
         <SectionHeading
           eyebrow={aboutContent.eyebrow}
           title={aboutContent.title}
+          subtitle={aboutContent.subtitle}
         />
 
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
@@ -97,7 +98,7 @@ export default function AboutSection() {
 
         {/* Stats Cards - Single Row with Visible Icons */}
         <div className="mt-16">
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {aboutContent.stats.map((stat, index) => {
               const Icon = stat.icon;
               return (

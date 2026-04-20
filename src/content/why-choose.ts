@@ -113,7 +113,7 @@ export const whyChooseContent: WhyChooseContent = {
   
   // Trust Badges
   trustBadges: [
-    { label: "Free Shipping on Orders ₹500+", icon: "Truck" },
+    // { label: "Free Shipping on Orders ₹500+", icon: "Truck" },
     { label: "100% Satisfaction Guarantee", icon: "Heart" },
     { label: "10,000+ Happy Customers", icon: "Users" },
     { label: "4.8/5 Customer Rating", icon: "Star" },
