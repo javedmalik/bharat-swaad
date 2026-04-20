@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment, useState } from "react";
+import { Fragment } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { Check, ChevronDown } from "lucide-react";
 
@@ -13,20 +13,47 @@ const subjects = [
   { id: 6, name: "Other", value: "Other", emoji: "📝" },
 ];
 
-export default function SubjectDropdown() {
-  const [selected, setSelected] = useState(subjects[0]);
+type SubjectDropdownProps = {
+  value?: string;
+  onChange: (value: string) => void;
+  error?: string;
+  name?: string;
+};
+
+export default function SubjectDropdown({
+  value = "",
+  onChange,
+  error,
+  name = "subject",
+}: SubjectDropdownProps) {
+  const selectedSubject = subjects.find((item) => item.value === value);
 
   return (
     <div className="w-full">
-      <Listbox value={selected} onChange={setSelected}>
+      <Listbox value={value} onChange={onChange}>
         <div className="relative">
-          <Listbox.Button className="relative w-full rounded-2xl border border-[color:var(--border)] bg-[color:var(--card)] py-3 pl-4 pr-12 text-left text-[color:var(--foreground)] shadow-[0_8px_24px_rgba(22,101,52,0.10)] transition focus:border-[color:var(--primary)] focus:outline-none focus:ring-4 focus:ring-[rgba(22,101,52,0.16)]">
+          <Listbox.Button
+            className={`relative w-full rounded-2xl border bg-[color:var(--card)] py-3 pl-4 pr-12 text-left text-[color:var(--foreground)] shadow-[0_8px_24px_rgba(22,101,52,0.10)] transition focus:outline-none focus:ring-4 ${
+              error
+                ? "border-red-500 focus:border-red-500 focus:ring-red-200"
+                : "border-[color:var(--border)] focus:border-[color:var(--primary)] focus:ring-[rgba(22,101,52,0.16)]"
+            }`}
+          >
             <span
-              className={`block truncate ${
-                selected.value ? "text-[color:var(--foreground)]" : "text-[color:var(--muted-foreground)]"
+              className={`flex items-center gap-2 truncate ${
+                selectedSubject
+                  ? "text-[color:var(--foreground)]"
+                  : "text-[color:var(--muted-foreground)]"
               }`}
             >
-              {selected.name}
+              {selectedSubject ? (
+                <>
+                  <span>{selectedSubject.emoji}</span>
+                  <span>{selectedSubject.name}</span>
+                </>
+              ) : (
+                <span>Select subject</span>
+              )}
             </span>
 
             <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-4 text-[color:var(--primary)]">
@@ -44,7 +71,7 @@ export default function SubjectDropdown() {
               {subjects.map((subject) => (
                 <Listbox.Option
                   key={subject.id}
-                  value={subject}
+                  value={subject.value}
                   className={({ active }) =>
                     `relative cursor-pointer select-none rounded-xl py-3 pl-10 pr-4 transition ${
                       active
@@ -55,8 +82,13 @@ export default function SubjectDropdown() {
                 >
                   {({ selected }) => (
                     <>
-                      <span className={`block truncate ${selected ? "font-semibold" : "font-medium"}`}>
-                        {subject.name}
+                      <span
+                        className={`flex items-center gap-2 truncate ${
+                          selected ? "font-semibold" : "font-medium"
+                        }`}
+                      >
+                        <span>{subject.emoji}</span>
+                        <span>{subject.name}</span>
                       </span>
 
                       {selected ? (
@@ -72,6 +104,10 @@ export default function SubjectDropdown() {
           </Transition>
         </div>
       </Listbox>
+
+      <input type="hidden" name={name} value={value} />
+
+      {error ? <p className="mt-2 text-sm text-red-600">{error}</p> : null}
     </div>
   );
 }
