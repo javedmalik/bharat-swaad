@@ -147,9 +147,6 @@ export default function ContactCta() {
 
   return (
     <section id="contact" className="section-space relative overflow-hidden">
-      {/* Background Pattern */}
-      {/* <div className="absolute inset-0 bg-grid opacity-30 dark:opacity-10" /> */}
-
       {/* Decorative Blur Elements */}
       <div className="absolute top-0 -right-32 h-96 w-96 rounded-full bg-primary/5 blur-3xl" />
       <div className="absolute bottom-0 -left-32 h-96 w-96 rounded-full bg-secondary/5 blur-3xl" />
@@ -164,23 +161,24 @@ export default function ContactCta() {
           {/* Main Contact Card */}
           <div className="overflow-hidden rounded-3xl border border-border bg-card shadow-xl">
             <div className="p-6 md:p-8 lg:p-10">
+              {/* Heading Section - Top of both columns */}
+              <motion.div variants={itemVariants} className="mb-10 text-center lg:text-left">
+                <span className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-sm font-medium text-primary">
+                  <MessageCircle className="h-4 w-4" />
+                  {contactContent.eyebrow}
+                </span>
+                <h2 className="mt-4 text-3xl font-bold text-foreground lg:text-4xl">
+                  {contactContent.title}
+                </h2>
+                <p className="mt-3 text-muted-foreground leading-relaxed max-w-2xl lg:max-w-full">
+                  {contactContent.description}
+                </p>
+              </motion.div>
+
+              {/* Two Column Layout */}
               <div className="grid gap-10 lg:grid-cols-2">
                 {/* Left Side - Info */}
                 <motion.div variants={itemVariants} className="space-y-6">
-                  <div>
-                    <span className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-sm font-medium text-primary">
-                      <MessageCircle className="h-4 w-4" />
-                      {contactContent.eyebrow}
-                    </span>
-                    <h2 className="mt-4 text-3xl font-bold text-foreground lg:text-4xl">
-                      {contactContent.title}
-                    </h2>
-                    <p className="mt-3 text-muted-foreground leading-relaxed">
-                      {contactContent.description}
-                    </p>
-                  </div>
-
-                  {/* Contact Info Cards */}
                   {/* Contact Info Cards */}
                   <div className="space-y-4">
                     <div className="flex items-start gap-3 rounded-xl border border-border bg-muted/30 p-4 transition-all hover:border-primary/30 hover:shadow-md">
@@ -205,7 +203,6 @@ export default function ContactCta() {
                       </div>
                     </div>
 
-                    {/* Rest of the contact cards remain the same */}
                     <div className="flex items-start gap-3 rounded-xl border border-border bg-muted/30 p-4 transition-all hover:border-primary/30 hover:shadow-md">
                       <div className="rounded-lg bg-primary/10 p-2">
                         <Phone className="h-5 w-5 text-primary" />
@@ -214,7 +211,7 @@ export default function ContactCta() {
                         <div className="text-xs font-semibold uppercase text-muted-foreground">
                           Call Us
                         </div>
-                        <div className="flex flex-col gap-1 sm:flex-row sm:gap-3">
+                        <div className="flex flex-col gap-1">
                           {contactContent.phone.map((phoneNumber, index) => (
                             <a
                               key={index}
@@ -268,7 +265,7 @@ export default function ContactCta() {
 
                 {/* Right Side - Contact Form */}
                 <motion.div variants={itemVariants}>
-                  <div className="rounded-xl border border-border bg-muted/30 p-6 lg:mt-40  transition-all hover:border-primary/30 hover:shadow-md">
+                  <div className="rounded-xl border border-border bg-muted/30 p-6 transition-all hover:border-primary/30 hover:shadow-md">
                     <h3 className="mb-4 text-xl font-bold text-foreground">
                       Send us a Message
                     </h3>
@@ -360,7 +357,16 @@ export default function ContactCta() {
                       </div>
 
                       <div>
-                        <SubjectDropdown />
+                        <SubjectDropdown 
+                          value={formData.subject}
+                          onChange={(value: string) => {
+                            setFormData(prev => ({ ...prev, subject: value }));
+                            if (errors.subject) {
+                              setErrors(prev => ({ ...prev, subject: undefined }));
+                            }
+                          }}
+                          error={errors.subject}
+                        />
                       </div>
 
                       <div>

@@ -5,11 +5,12 @@ import { Listbox, Transition } from "@headlessui/react";
 import { Check, ChevronDown } from "lucide-react";
 
 const subjects = [
-  { id: 1, name: "Select subject", value: "" },
-  { id: 2, name: "General Inquiry", value: "general" },
-  { id: 3, name: "Product Information", value: "product" },
-  { id: 4, name: "Bulk Order", value: "bulk" },
-  { id: 5, name: "Partnership", value: "partnership" },
+  { id: 1, name: "Product Enquiry", value: "Product Enquiry", emoji: "📦" },
+  { id: 2, name: "Bulk Order", value: "Bulk Order", emoji: "📊" },
+  { id: 3, name: "Dealership", value: "Dealership", emoji: "🤝" },
+  { id: 4, name: "Business Partnership", value: "Business Partnership", emoji: "💼" },
+  { id: 5, name: "Feedback", value: "Feedback", emoji: "⭐" },
+  { id: 6, name: "Other", value: "Other", emoji: "📝" },
 ];
 
 export default function SubjectDropdown() {
