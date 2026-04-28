@@ -10,7 +10,8 @@ export type CertificationItem = {
     | "Food Safety"
     | "Quality Management"
     | "Export Compliance"
-    | "Religious & Organic";
+    | "Religious & Organic"
+    | "Business Registration";
   highlight?: string;
 };
 
@@ -118,6 +119,30 @@ export const certificationsContent = {
       pdf: "/documents/certifications/us-fda.pdf",
       category: "Export Compliance",
       highlight: "Export ready",
+    },
+
+    // Newly added documents
+    {
+      id: "mca-incorporation",
+      name: "Certificate of Incorporation",
+      subtitle: "Government of India - Ministry of Corporate Affairs",
+      certificateNumber: "U10795DC2026PTC470532",
+      issuedOn: "15-04-2026",
+      validTill: "Lifetime",
+      pdf: "/documents/certifications/spice-part-b-approval-letter-ac2975805.pdf",
+      category: "Business Registration",
+      highlight: "Company incorporated",
+    },
+    {
+      id: "udyam-msme",
+      name: "Udyam MSME Registration",
+      subtitle: "Ministry of Micro, Small and Medium Enterprises",
+      certificateNumber: "UDYAM-DL-11-0157050",
+      issuedOn: "21-04-2026",
+      validTill: "Lifetime",
+      pdf: "/documents/certifications/zafranix-msme.pdf",
+      category: "Business Registration",
+      highlight: "Micro enterprise",
     },
   ],
 };

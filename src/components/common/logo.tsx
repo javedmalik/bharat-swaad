@@ -5,7 +5,7 @@ export default function Logo() {
   return (
     <Link href="/" className="flex items-center gap-3">
       <Image
-        src="/images/brand/logo.png"
+        src="/images/brand/logo2.png"
         alt="Bharat Swaad logo"
         width={160}
         height={56}
