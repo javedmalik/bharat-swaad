@@ -17,6 +17,8 @@ import { heroSlides } from "@/content/hero";
 export default function HeroSlider() {
   const [active, setActive] = useState(0);
   const [isHovering, setIsHovering] = useState(false);
+  // Fix: Add proper type annotation
+  const [loadedImages, setLoadedImages] = useState<{ [key: number]: boolean }>({});
 
   useEffect(() => {
     if (isHovering) return;
@@ -37,6 +39,20 @@ export default function HeroSlider() {
   };
 
   const slide = heroSlides[active];
+
+  // Preload next image
+  useEffect(() => {
+    const nextIndex = (active + 1) % heroSlides.length;
+    const nextImage = heroSlides[nextIndex].image;
+    
+    // Preload next image for faster transitions
+    const img = document.createElement('img');
+    if (typeof nextImage === 'object' && 'src' in nextImage) {
+      img.src = nextImage.src;
+    } else if (typeof nextImage === 'string') {
+      img.src = nextImage;
+    }
+  }, [active]);
 
   return (
     <section
@@ -59,16 +75,25 @@ export default function HeroSlider() {
             src={slide.image}
             alt={slide.title}
             fill
-            priority
-            className="object-cover object-center sm:object-center"
+            priority={active === 0}
+            className="object-cover object-center"
             sizes="100vw"
-            style={{ objectPosition: "25% center" }}
+            quality={75}
+            placeholder="blur"
+            onLoad={() => {
+              setLoadedImages(prev => ({ ...prev, [slide.id]: true }));
+            }}
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/50 to-black/20 sm:from-black/70 sm:via-black/40 sm:to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
           <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/30" />
         </motion.div>
       </AnimatePresence>
+
+      {/* Skeleton loader while image loads - Fixed with optional chaining */}
+      {!loadedImages[slide.id] && (
+        <div className="absolute inset-0 z-0 bg-gradient-to-r from-gray-900 to-gray-800 animate-pulse" />
+      )}
 
       {/* Particles */}
       <div className="pointer-events-none absolute inset-0 z-[5] hidden sm:block">
