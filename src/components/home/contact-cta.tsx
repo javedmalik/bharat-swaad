@@ -102,60 +102,60 @@ export default function ContactCta() {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  if (!validateForm()) {
-    return;
-  }
-
-  setIsSubmitting(true);
-  setSubmitStatus({ type: null, message: "" });
-
-  try {
-    const response = await fetch("https://formspree.io/f/mlgzgwqk", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify({
-        name: formData.name,
-        email: formData.email,
-        phone: formData.phone,
-        subject: formData.subject,
-        message: formData.message,
-      }),
-    });
-
-    if (!response.ok) {
-      throw new Error("Form submission failed");
+    if (!validateForm()) {
+      return;
     }
 
-    setSubmitStatus({
-      type: "success",
-      message: "Thank you! We'll get back to you within 24 hours.",
-    });
+    setIsSubmitting(true);
+    setSubmitStatus({ type: null, message: "" });
 
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      subject: "",
-      message: "",
-    });
+    try {
+      const response = await fetch("https://formspree.io/f/mlgzgwqk", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          subject: formData.subject,
+          message: formData.message,
+        }),
+      });
 
-    setTimeout(() => {
-      setSubmitStatus({ type: null, message: "" });
-    }, 5000);
-  } catch (error) {
-    setSubmitStatus({
-      type: "error",
-      message: "Something went wrong. Please try again later.",
-    });
-  } finally {
-    setIsSubmitting(false);
-  }
-};
+      if (!response.ok) {
+        throw new Error("Form submission failed");
+      }
+
+      setSubmitStatus({
+        type: "success",
+        message: "Thank you! We'll get back to you within 24 hours.",
+      });
+
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        subject: "",
+        message: "",
+      });
+
+      setTimeout(() => {
+        setSubmitStatus({ type: null, message: "" });
+      }, 5000);
+    } catch (error) {
+      setSubmitStatus({
+        type: "error",
+        message: "Something went wrong. Please try again later.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -186,7 +186,10 @@ export default function ContactCta() {
           <div className="overflow-hidden rounded-3xl border border-border bg-card shadow-xl">
             <div className="p-6 md:p-8 lg:p-10">
               {/* Heading Section - Top of both columns */}
-              <motion.div variants={itemVariants} className="mb-10 text-center lg:text-left">
+              <motion.div
+                variants={itemVariants}
+                className="mb-10 text-center lg:text-left"
+              >
                 <span className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-sm font-medium text-primary">
                   <MessageCircle className="h-4 w-4" />
                   {contactContent.eyebrow}
@@ -295,9 +298,11 @@ export default function ContactCta() {
                     </h3>
 
                     {submitStatus.type === "success" && (
-                      <div className="mb-4 flex items-center gap-2 rounded-lg border border-emerald-200 bg-emerald-50 p-3 text-emerald-700 dark:border-emerald-800 dark:bg-emerald-950/30 dark:text-emerald-400">
-                        <CheckCircle className="h-5 w-5" />
-                        <span className="text-sm">{submitStatus.message}</span>
+                      <div className="mb-4 flex items-start gap-3 rounded-xl border border-primary bg-primary p-4 text-primary-foreground shadow-sm">
+                        <CheckCircle className="mt-0.5 h-5 w-5 shrink-0 text-primary-foreground" />
+                        <span className="text-sm font-medium leading-relaxed">
+                          {submitStatus.message}
+                        </span>
                       </div>
                     )}
 
@@ -381,12 +386,18 @@ export default function ContactCta() {
                       </div>
 
                       <div>
-                        <SubjectDropdown 
+                        <SubjectDropdown
                           value={formData.subject}
                           onChange={(value: string) => {
-                            setFormData(prev => ({ ...prev, subject: value }));
+                            setFormData((prev) => ({
+                              ...prev,
+                              subject: value,
+                            }));
                             if (errors.subject) {
-                              setErrors(prev => ({ ...prev, subject: undefined }));
+                              setErrors((prev) => ({
+                                ...prev,
+                                subject: undefined,
+                              }));
                             }
                           }}
                           error={errors.subject}
