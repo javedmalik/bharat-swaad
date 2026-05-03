@@ -4,7 +4,7 @@ export const heroSlides = [
     title: "Pure Indian Spices, Crafted for Every Kitchen",
     subtitle:
       "From turmeric to Kashmiri mirch, Bharat Swaad delivers bold aroma, rich colour, and authentic taste in every pack.",
-    image: "/images/hero/1.png",
+    image: "/images/hero/1.jpeg",
     ctaPrimary: { label: "Explore Products", href: "#products" },
     ctaSecondary: { label: "About Us", href: "#about" }
   },
@@ -13,7 +13,7 @@ export const heroSlides = [
     title: "Tradition in Every Blend",
     subtitle:
       "Carefully sourced ingredients, hygienic processing, and consistency you can trust every single day.",
-    image: "/images/hero/2.png",
+    image: "/images/hero/2.jpeg",
     ctaPrimary: { label: "Why Choose Us", href: "#why-us" },
     ctaSecondary: { label: "Contact Us", href: "#contact" }
   },
@@ -22,8 +22,17 @@ export const heroSlides = [
     title: "The Heartbeat of Indian Spice",
     subtitle:
       "Premium masalas that elevate home cooking, restaurants, and food businesses with unforgettable flavour.",
-    image: "/images/hero/1.png",
+    image: "/images/hero/3.jpeg",
     ctaPrimary: { label: "View Range", href: "#products" },
     ctaSecondary: { label: "Get in Touch", href: "#contact" }
+  },
+  {
+    id: 4,
+    title: "Crafted with Care, Delivered with Pride",
+    subtitle:
+      "Each blend is a testament to our commitment to quality and tradition, ensuring every dish tells a story.",
+    image: "/images/hero/4.jpeg",
+    ctaPrimary: { label: "Learn More", href: "#about" },
+    ctaSecondary: { label: "Contact Us", href: "#contact" }
   }
 ];

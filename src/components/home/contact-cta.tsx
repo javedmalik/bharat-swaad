@@ -1,10 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import { motion, Variants } from "framer-motion";
 import Container from "@/components/common/container";
-import SectionHeading from "@/components/common/section-heading";
 import { contactContent } from "@/content/contact";
 import {
   Mail,
@@ -104,21 +102,40 @@ export default function ContactCta() {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    if (!validateForm()) {
-      return;
+  if (!validateForm()) {
+    return;
+  }
+
+  setIsSubmitting(true);
+  setSubmitStatus({ type: null, message: "" });
+
+  try {
+    const response = await fetch("https://formspree.io/f/mlgzgwqk", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        subject: formData.subject,
+        message: formData.message,
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error("Form submission failed");
     }
-
-    setIsSubmitting(true);
-
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1500));
 
     setSubmitStatus({
       type: "success",
       message: "Thank you! We'll get back to you within 24 hours.",
     });
+
     setFormData({
       name: "",
       email: "",
@@ -126,12 +143,19 @@ export default function ContactCta() {
       subject: "",
       message: "",
     });
-    setIsSubmitting(false);
 
     setTimeout(() => {
       setSubmitStatus({ type: null, message: "" });
     }, 5000);
-  };
+  } catch (error) {
+    setSubmitStatus({
+      type: "error",
+      message: "Something went wrong. Please try again later.",
+    });
+  } finally {
+    setIsSubmitting(false);
+  }
+};
 
   const handleChange = (
     e: React.ChangeEvent<
